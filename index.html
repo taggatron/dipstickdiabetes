@@ -9,7 +9,7 @@
 <body>
   <header class="app-header">
     <h1>Dipstick Diabetes Simulation Lab</h1>
-    <p>Select a virtual patient, dip the strip, and interpret the results.</p>
+    <p>Select a virtual patient, dip the strip, and see what the colours show.</p>
   </header>
 
   <main class="layout">
@@ -60,9 +60,12 @@
         <p>Select a patient and run the test to see results.</p>
       </div>
 
-      <h3>Clinical Reasoning</h3>
-      <div id="reasoning" class="reasoning-box">
-        <p>The reasoning panel will guide you through interpretation.</p>
+      <div class="advanced-header">
+        <h3>Advanced (teacher / GCSE)</h3>
+        <button id="advanced-toggle" class="ghost-btn small">Show</button>
+      </div>
+      <div id="reasoning" class="reasoning-box reasoning-collapsed" aria-hidden="true">
+        <p>The advanced panel shows extra scientific detail.</p>
       </div>
     </section>
   </main>

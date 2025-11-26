@@ -5,7 +5,7 @@ const patients = [
     age: 19,
     initials: "A",
     clue:
-      "19-year-old with polyuria, polydipsia, weight loss, and abdominal pain.",
+      "19-year-old who is very thirsty (polydipsia), going to the toilet a lot (polyuria), has lost weight and has stomach pain.",
     strip: {
       glucose: "high",
       ketones: "high",
@@ -54,6 +54,7 @@ const padColors = {
 
 let selectedPatientId = null;
 let isAnimating = false;
+let advancedOpen = false;
 
 function $(selector) {
   return document.querySelector(selector);
@@ -104,26 +105,28 @@ function resetStripVisuals() {
   });
 
   $("#results").innerHTML =
-    "<p>Select a patient and run the test to see results.</p>";
-  $("#reasoning").innerHTML =
-    "<p>The reasoning panel will guide you through interpretation.</p>";
+    "<p>Select a patient, then click <strong>Dip Strip</strong> to see if any pads change colour.</p>";
+
+  // Reset advanced panel content but keep its collapsed/expanded state
+  const reasoning = $("#reasoning");
+  reasoning.innerHTML =
+    "<p>The advanced panel gives extra detail for older students and teachers.</p>";
 }
 
 function showPromptForPatient(patient) {
   const results = $("#results");
   results.innerHTML = `
-    <p>You selected <strong>${patient.name}</strong>. When you dip the strip, pay attention to:</p>
+    <p>You selected <strong>${patient.name}</strong>. When you dip the strip, watch for pads that change colour.</p>
     <ul>
-      <li>Glucose pad &mdash; presence of glycosuria</li>
-      <li>Ketone pad &mdash; risk of ketoacidosis</li>
-      <li>Protein pad &mdash; possible nephropathy</li>
+      <li>Glucose pad &mdash; sugar in the urine</li>
+      <li>Ketone pad &mdash; chemicals made when the body burns fat</li>
+      <li>Protein pad &mdash; protein leaking from the kidneys</li>
     </ul>
   `;
 
   const reasoning = $("#reasoning");
   reasoning.innerHTML = `
-    <p><strong>Clinical question:</strong> What does this patient's urine tell you about diabetes risk or complications?</p>
-    <p class="chip">Think: screening vs emergency, acute vs chronic changes.</p>
+    <p><strong>Advanced view:</strong> Click the <em>Advanced</em> button to see a more detailed explanation for teachers or GCSE students.</p>
   `;
 }
 
@@ -173,7 +176,7 @@ function applyStripResults(patient) {
   const reasoning = $("#reasoning");
   reasoning.innerHTML = `
     <p>${patient.reasoning}</p>
-    <p class="chip">Next step: Consider lab confirmation and broader metabolic assessment.</p>
+    <p class="chip">Advanced: This level of detail is mainly for GCSE / A level and teachers.</p>
   `;
 }
 
@@ -206,8 +209,33 @@ function handleDip() {
 function handleReset() {
   selectedPatientId = null;
   isAnimating = false;
+  advancedOpen = false;
+  updateAdvancedToggleUI();
   renderPatients();
   resetStripVisuals();
+}
+
+function toggleAdvanced() {
+  advancedOpen = !advancedOpen;
+  updateAdvancedToggleUI();
+}
+
+function updateAdvancedToggleUI() {
+  const reasoningBox = $("#reasoning");
+  const toggleBtn = $("#advanced-toggle");
+  if (!reasoningBox || !toggleBtn) return;
+
+  if (advancedOpen) {
+    reasoningBox.classList.remove("reasoning-collapsed");
+    reasoningBox.classList.add("reasoning-expanded");
+    reasoningBox.setAttribute("aria-hidden", "false");
+    toggleBtn.textContent = "Hide";
+  } else {
+    reasoningBox.classList.remove("reasoning-expanded");
+    reasoningBox.classList.add("reasoning-collapsed");
+    reasoningBox.setAttribute("aria-hidden", "true");
+    toggleBtn.textContent = "Show";
+  }
 }
 
 function init() {
@@ -216,6 +244,10 @@ function init() {
 
   $("#dip-btn").addEventListener("click", handleDip);
   $("#reset-btn").addEventListener("click", handleReset);
+  $("#advanced-toggle").addEventListener("click", toggleAdvanced);
+
+  // Ensure advanced panel starts hidden
+  updateAdvancedToggleUI();
 }
 
 window.addEventListener("DOMContentLoaded", init);

@@ -306,6 +306,40 @@ body {
   font-size: 0.85rem;
 }
 
+.advanced-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.ghost-btn.small {
+  padding: 0.25rem 0.7rem;
+  font-size: 0.75rem;
+}
+
+.reasoning-collapsed {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  overflow: hidden;
+  opacity: 0;
+  border-width: 0;
+  transition: max-height 0.35s ease, opacity 0.35s ease, padding 0.25s ease,
+    margin 0.25s ease, border-width 0.25s ease;
+}
+
+.reasoning-expanded {
+  max-height: 260px;
+  opacity: 1;
+  margin-top: 0.4rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  border-width: 1px;
+}
+
 .results-box ul {
   padding-left: 1.1rem;
   margin: 0.2rem 0 0;

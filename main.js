@@ -1,11 +1,11 @@
 const patients = [
   {
     id: 1,
-    name: "Alex", // likely type 1 DKA picture
+    name: "Sue", // clearly has diabetes
     age: 19,
-    initials: "A",
+    initials: "S",
     clue:
-      "19-year-old who is very thirsty (polydipsia), going to the toilet a lot (polyuria), has lost weight and has stomach pain.",
+      "Sue is 19. She is very thirsty (polydipsia), going to the toilet a lot (polyuria), has lost weight and has stomach pain.",
     strip: {
       glucose: "high",
       ketones: "high",
@@ -16,11 +16,11 @@ const patients = [
   },
   {
     id: 2,
-    name: "Brenda", // poorly controlled type 2
+    name: "Dave", // borderline / at risk
     age: 52,
-    initials: "B",
+    initials: "D",
     clue:
-      "52-year-old with long-standing type 2 diabetes and blurred vision.",
+      "Dave is 52. He is overweight and often tired. His blood tests have been close to the diabetes range (borderline), so his nurse wants to check his urine.",
     strip: {
       glucose: "high",
       ketones: "none",
@@ -31,11 +31,11 @@ const patients = [
   },
   {
     id: 3,
-    name: "Carlos", // at risk but not yet diabetic
+    name: "Adam", // does not have diabetes
     age: 34,
-    initials: "C",
+    initials: "A",
     clue:
-      "34-year-old with strong family history of type 2 diabetes; routine screen.",
+      "Adam is 34. He feels well and has come for a routine health check. His family does not have a strong history of diabetes.",
     strip: {
       glucose: "none",
       ketones: "none",

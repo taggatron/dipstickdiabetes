@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dipstick Diabetes Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Dipstick Diabetes Simulation Lab</h1>
+    <p>Select a virtual patient, dip the strip, and interpret the results.</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel patients" aria-label="Virtual patients">
+      <h2>Patients</h2>
+      <div class="patient-list" id="patient-list"></div>
+    </section>
+
+    <section class="panel lab" aria-label="Dipstick lab bench">
+      <h2>Lab Bench</h2>
+      <div class="lab-area">
+        <div class="beaker" id="beaker">
+          <div class="urine"></div>
+          <span class="beaker-label">Urine Sample</span>
+        </div>
+        <div class="strip-zone">
+          <div class="strip" id="strip">
+            <div class="pad pad-glucose" data-analyte="glucose"></div>
+            <div class="pad pad-ketones" data-analyte="ketones"></div>
+            <div class="pad pad-protein" data-analyte="protein"></div>
+          </div>
+          <button id="dip-btn" class="primary-btn">Dip Strip</button>
+          <button id="reset-btn" class="ghost-btn">Reset</button>
+          <p class="hint">Tip: select a patient first, then click "Dip Strip".</p>
+        </div>
+      </div>
+
+      <div class="legend">
+        <h3>Color Legend</h3>
+        <div class="legend-row">
+          <span class="legend-color legend-none"></span>
+          <span>Negative / normal</span>
+        </div>
+        <div class="legend-row">
+          <span class="legend-color legend-mild"></span>
+          <span>Mild elevation</span>
+        </div>
+        <div class="legend-row">
+          <span class="legend-color legend-high"></span>
+          <span>Markedly elevated</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel results" aria-label="Results and interpretation">
+      <h2>Results</h2>
+      <div id="results" class="results-box">
+        <p>Select a patient and run the test to see results.</p>
+      </div>
+
+      <h3>Clinical Reasoning</h3>
+      <div id="reasoning" class="reasoning-box">
+        <p>The reasoning panel will guide you through interpretation.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <span>Educational simulation – not for real clinical use.</span>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

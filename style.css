@@ -419,4 +419,20 @@ body {
   .strip-zone {
     align-items: center;
   }
+
+  /* On small screens, move the strip upwards towards the beaker */
+  @keyframes dipMotion {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    35% {
+      transform: translateY(-90px) rotate(12deg);
+    }
+    65% {
+      transform: translateY(-90px) rotate(12deg);
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+  }
 }
